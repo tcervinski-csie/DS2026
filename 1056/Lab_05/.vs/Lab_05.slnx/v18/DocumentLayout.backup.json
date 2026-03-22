@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\tcervinski\\Documents\\DS\\DS2026\\1056\\Lab_05\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{368B54D9-BEAA-412B-9AD7-E657E721E019}|Lab_05.vcxproj|C:\\Users\\tcervinski\\Documents\\DS\\DS2026\\1056\\Lab_05\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{368B54D9-BEAA-412B-9AD7-E657E721E019}|Lab_05.vcxproj|solutionrelative:main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.c",
+              "DocumentMoniker": "C:\\Users\\tcervinski\\Documents\\DS\\DS2026\\1056\\Lab_05\\main.c",
+              "RelativeDocumentMoniker": "main.c",
+              "ToolTip": "C:\\Users\\tcervinski\\Documents\\DS\\DS2026\\1056\\Lab_05\\main.c",
+              "RelativeToolTip": "main.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-03-22T17:56:32.69Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
