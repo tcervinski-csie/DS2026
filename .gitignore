@@ -1,0 +1,14 @@
+# Visual Studio build artifacts
+x64/
+Debug/
+Release/
+*.obj
+*.exe
+*.pdb
+*.ilk
+*.user
+*.suo
+*.recipe
+
+# Visual Studio IDE folder
+.vs/
