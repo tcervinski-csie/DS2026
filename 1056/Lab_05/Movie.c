@@ -4,7 +4,7 @@
 #include "Movie.h"
 #include "DoublyLinkedList.h"
 
-int loadMovies(const char* filename, Node** list, InsertListFn insertFn) {
+int loadMovies(const char* filename, List* list, InsertListFn insertFn) {
 
     FILE* f = fopen(filename, "r");
     if (f == NULL) {
@@ -29,7 +29,7 @@ int loadMovies(const char* filename, Node** list, InsertListFn insertFn) {
         token = strtok(NULL, ",");
         movie->hasOscar = atoi(token);
 
-        // insertFn(list, movie);
+        insertFn(list, movie);
 
         count++;
     }

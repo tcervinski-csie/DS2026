@@ -8,6 +8,14 @@ typedef struct Node {
     struct Node* next;
 } Node;
 
-typedef void (*InsertListFn)(Node**, Movie*);
+typedef struct {
+    Node* head;
+    Node* tail;
+} List;
 
-int loadMovies(const char* filename, Node** list, InsertListFn insertFn);
+typedef void (*InsertListFn)(List*, Movie*);
+
+void insertBeginning(List* list, Movie* movie);
+void insertEnd(List* list, Movie* movie);
+
+int loadMovies(const char* filename, List* list, InsertListFn insertFn);

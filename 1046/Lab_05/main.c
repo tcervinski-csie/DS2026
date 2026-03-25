@@ -4,8 +4,8 @@
 
 int main() {
 
-    Node* list = NULL;
-    int count = loadMovies("movies.csv", &list, NULL);
+    List list = { NULL, NULL };
+    int count = loadMovies("movies.csv", &list, insertEnd);
 
     if (count < 0) {
         printf("Failed to load movies.\n");
