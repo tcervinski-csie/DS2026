@@ -52,5 +52,37 @@ void freeTree(TreeNode* root) {
 }
 
 int loadGames(const char* filename, TreeNode** root) {
-    return 0;
+    FILE* f = fopen(filename, "r");
+    if (f == NULL) {
+        printf("Error: could not open file '%s'\n", filename);
+        return -1;
+    }
+
+    char line[256];
+    int count = 0;
+
+    while (fgets(line, sizeof(line), f) != NULL) {
+        VideoGame* game = malloc(sizeof(VideoGame));
+
+        char* token = strtok(line, ",");
+        game->gameID = (unsigned int)atoi(token);
+
+        token = strtok(NULL, ",");
+        game->title = malloc(strlen(token) + 1);
+        strcpy(game->title, token);
+
+        token = strtok(NULL, ",");
+        game->studio = malloc(strlen(token) + 1);
+        strcpy(game->studio, token);
+
+        token = strtok(NULL, ",");
+        token[strcspn(token, "\n")] = '\0';
+        game->releaseYear = atoi(token);
+
+        insert(root, game);
+        count++;
+    }
+
+    fclose(f);
+    return count;
 }
