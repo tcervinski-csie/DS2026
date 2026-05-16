@@ -15,29 +15,32 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Graph.c">
+    <ClCompile Include="AVL.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BST.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Station.c">
+    <ClCompile Include="VideoGame.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Graph.h">
+    <ClInclude Include="AVL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Station.h">
+    <ClInclude Include="BST.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="stations.csv">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="connections.txt">
+    <None Include="games.csv">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
