@@ -9,20 +9,45 @@
 // ---------------------------------------------------------------
 
 void insertNode(GraphNode** graph, Station* station) {
-    // TODO
+    GraphNode* newNode = malloc(sizeof(GraphNode));
+    newNode->data = station;
+    newNode->adj = NULL;
+    newNode->next = NULL;
+    if (*graph == NULL) {
+        *graph = newNode;
+        return;
+    }
+    GraphNode* aux = *graph;
+    while (aux->next) aux = aux->next;
+    aux->next = newNode;
 }
 
 static void insertAdj(AdjNode** list, GraphNode* target) {
-    // TODO
+    AdjNode* newNode = malloc(sizeof(AdjNode));
+    newNode->target = target;
+    newNode->next = NULL;
+    if (*list == NULL) {
+        *list = newNode;
+        return;
+    }
+    AdjNode* aux = *list;
+    while (aux->next) aux = aux->next;
+    aux->next = newNode;
 }
 
 void addEdge(GraphNode* graph, int id1, int id2) {
-    // TODO
+    GraphNode* n1 = findById(graph, id1);
+    GraphNode* n2 = findById(graph, id2);
+    if (n1 && n2) {
+        insertAdj(&n1->adj, n2);
+        insertAdj(&n2->adj, n1);
+    }
 }
 
 GraphNode* findById(GraphNode* graph, int id) {
-    // TODO
-    return NULL;
+    while (graph && graph->data->id != id)
+        graph = graph->next;
+    return graph;
 }
 
 // ---------------------------------------------------------------
@@ -30,7 +55,15 @@ GraphNode* findById(GraphNode* graph, int id) {
 // ---------------------------------------------------------------
 
 void printGraph(GraphNode* graph) {
-    // TODO
+    while (graph) {
+        printStation(graph->data);
+        AdjNode* adj = graph->adj;
+        while (adj) {
+            printf("    -> [%d] %s\n", adj->target->data->id, adj->target->data->name);
+            adj = adj->next;
+        }
+        graph = graph->next;
+    }
 }
 
 // ---------------------------------------------------------------
@@ -43,12 +76,18 @@ typedef struct StackNode {
 } StackNode;
 
 static void push(StackNode** top, int id) {
-    // TODO
+    StackNode* node = malloc(sizeof(StackNode));
+    node->id = id;
+    node->next = *top;
+    *top = node;
 }
 
 static int pop(StackNode** top) {
-    // TODO
-    return 0;
+    int id = (*top)->id;
+    StackNode* del = *top;
+    *top = (*top)->next;
+    free(del);
+    return id;
 }
 
 // ---------------------------------------------------------------
@@ -66,12 +105,21 @@ typedef struct {
 } Queue;
 
 static void enqueue(Queue* q, int id) {
-    // TODO
+    QueueNode* node = malloc(sizeof(QueueNode));
+    node->id = id;
+    node->next = NULL;
+    if (q->back) q->back->next = node;
+    else q->front = node;
+    q->back = node;
 }
 
 static int dequeue(Queue* q) {
-    // TODO
-    return 0;
+    int id = q->front->id;
+    QueueNode* del = q->front;
+    q->front = q->front->next;
+    if (!q->front) q->back = NULL;
+    free(del);
+    return id;
 }
 
 // ---------------------------------------------------------------
@@ -79,11 +127,55 @@ static int dequeue(Queue* q) {
 // ---------------------------------------------------------------
 
 void dfs(GraphNode* graph, int startId, int nodeCount) {
-    // TODO
+    int* visited = calloc(nodeCount, sizeof(int));
+    StackNode* stack = NULL;
+
+    visited[startId - 1] = 1;
+    push(&stack, startId);
+
+    printf("DFS from station [%d]:\n", startId);
+    while (stack) {
+        int currentId = pop(&stack);
+        GraphNode* node = findById(graph, currentId);
+        printStation(node->data);
+
+        AdjNode* adj = node->adj;
+        while (adj) {
+            int neighborId = adj->target->data->id;
+            if (!visited[neighborId - 1]) {
+                visited[neighborId - 1] = 1;
+                push(&stack, neighborId);
+            }
+            adj = adj->next;
+        }
+    }
+    free(visited);
 }
 
 void bfs(GraphNode* graph, int startId, int nodeCount) {
-    // TODO
+    int* visited = calloc(nodeCount, sizeof(int));
+    Queue q = { NULL, NULL };
+
+    visited[startId - 1] = 1;
+    enqueue(&q, startId);
+
+    printf("BFS from station [%d]:\n", startId);
+    while (q.front) {
+        int currentId = dequeue(&q);
+        GraphNode* node = findById(graph, currentId);
+        printStation(node->data);
+
+        AdjNode* adj = node->adj;
+        while (adj) {
+            int neighborId = adj->target->data->id;
+            if (!visited[neighborId - 1]) {
+                visited[neighborId - 1] = 1;
+                enqueue(&q, neighborId);
+            }
+            adj = adj->next;
+        }
+    }
+    free(visited);
 }
 
 // ---------------------------------------------------------------
